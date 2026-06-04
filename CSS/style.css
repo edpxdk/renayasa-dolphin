@@ -1,0 +1,318 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Memastikan scroll internal lancar */
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: rgb(14, 146, 194);
+  --primary-dark: rgb(13, 111, 146);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+  /* Menghilangkan kedutan saat transisi */
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 7%; /* Menambahkan sedikit padding vertikal agar proposional */
+  background: white; /* Mencegah konten di belakangnya tembus saat scroll */
+  transition: all 0.3s ease;
+}
+
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.navbar-logo span {
+  color: var(--primary);
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  /* Transisi halus saat warna teks berubah ketika di-hover */
+  transition: color 0.3s ease;
+}
+
+.navbar-nav a:hover {
+  color: var(--primary);
+}
+
+.navbar-extra {
+  display: none;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero {
+  background-image: url(img/Hero.webp);
+  background-size: cover;
+  background-position: center;
+  height: 65vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  text-align: center;
+  /* Memastikan gambar latar belakang tidak terlihat kaku */
+  will-change: transform;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 800px;
+  padding: 0 1rem;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+}
+
+/* =========================
+SECTION TITLE
+========================= */
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-title h2 {
+  font-size: 2rem;
+}
+
+.section-title span {
+  color: var(--primary);
+}
+
+/* =========================
+PACKAGES
+========================= */
+
+.packages {
+  padding: 4rem 7%;
+}
+
+.package-container {
+  display: grid;
+  /* Mengganti auto-fit ke auto-fill agar grid tetap stabil jika item sedikit */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.package-card {
+  overflow: hidden;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+  /* Dioptimalkan menggunakan fungsi cubic-bezier agar efek membal/smooth-nya terasa pro */
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.package-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.package-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  /* Memberikan efek zoom-in halus pada gambar saat kartu di-hover */
+  transition: transform 0.5s ease;
+}
+
+.package-card:hover img {
+  transform: scale(1.05);
+}
+
+.package-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.package-info h3 {
+  margin-bottom: 0.5rem;
+}
+
+.package-info p {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* =========================
+LOCATION
+========================= */
+
+.location {
+  padding: 2rem 7% 4rem;
+}
+
+.map-container {
+  width: 100%;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  border-radius: 12px;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+footer h3 {
+  margin-bottom: 0.5rem;
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 5%;
+  }
+
+  .navbar-logo {
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav {
+    gap: 1rem;
+  }
+
+  .hero {
+    height: 55vh;
+  }
+
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .packages {
+    padding: 3rem 5%;
+  }
+
+  .location {
+    padding: 3rem 5%;
+  }
+
+  .map-container iframe {
+    height: 350px;
+  }
+}
+
+/* MOBILE NAVIGATION */
+
+@media (max-width: 768px) {
+  .navbar {
+    position: relative;
+    z-index: 999;
+  }
+
+  .navbar-extra {
+    display: block;
+  }
+
+  .navbar-nav {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    width: 280px; /* Sedikit diperlebar agar ruang teks lebih lega */
+    height: 100vh;
+
+    background: rgba(255, 255, 255, 0.98); /* Sedikit blur mewah */
+    backdrop-filter: blur(10px); /* Efek blur kaca di belakang menu mobile */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding-top: 5rem;
+
+    transform: translateX(100%);
+    /* Mengubah transisi geser menu mobile agar terasa elastis dan halus */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    z-index: 1000;
+
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar-nav.active {
+    transform: translateX(0);
+  }
+}
